@@ -47,6 +47,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    
+      <None Include="README.md" Pack="true" PackagePath="\" />
+    
+    <None Update="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <PropertyGroup>
     <PackageIcon>nuget_es_img.png</PackageIcon>
   </PropertyGroup>
