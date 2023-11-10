@@ -7,10 +7,11 @@ public static class CurrentChangelog
         => new Changelog(new Project("PH.ChangeLogs","c-sharp utility for tracking changes and releases of a project")
             , new Change[]
             {
-                new Change(new Version("0.0.1", new DateOnly(2023,11,10),"7c895d7aea1371ff1b2b018f4c6899839866c17e", new []{"v.0.0.1"}),
+                new Change(new Version("0.0.1", new DateOnly(2023,11,10),"4b60c2976f7b1b5a5a2867e4ce0f5bf01ec81d88", new []{"v.0.0.1"}),
                            "Publish Package", new []
                            {
-                               "publish package 0.0.1"
+                               "publish package 0.0.1",
+                               "added source link to github"
                            }),
                 new Change(new Version("0.0.1-beta", new DateOnly(2023,11,10),""), 
                            "Prepare package for nuget"
