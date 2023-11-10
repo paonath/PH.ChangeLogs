@@ -28,7 +28,7 @@ public static class ChangelogExtensions
             md.AppendFormat("Release: {0:yyyy-MM-dd} ", change.Version.ReleaseDate);
             if(!string.IsNullOrWhiteSpace(change.Version.Commit))
             {
-                md.AppendFormat(" - Commit {0}", change.Version.Commit);
+                md.AppendFormat(" - Commit {0}", change.Version.Short);
             }
             md.AppendLine("");
             
