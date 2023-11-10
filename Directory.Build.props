@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+	<Authors>Paolo Innocenti</Authors>
+	<Copyright>Copyright $([System.DateTime]::UtcNow.ToString("yyyy")) (c) Paolo Innocenti - paonath@gmail.com </Copyright>
+	
+    <Version>0.0.1-alpha</Version>
+  </PropertyGroup>
+</Project>
+
