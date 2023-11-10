@@ -25,15 +25,16 @@ public static class ChangelogExtensions
         {
             md.AppendFormat("## {0}{1}", change.Version.VersionNumber, Environment.NewLine);
             md.AppendLine("");
-            md.AppendFormat("Release: {0:yyyy-MM-dd} ", change.Version.ReleaseDate);
+            md.AppendFormat("Release: **{0:yyyy-MM-dd}** ", change.Version.ReleaseDate);
             if(!string.IsNullOrWhiteSpace(change.Version.Commit))
             {
-                md.AppendFormat(" - Commit {0}", change.Version.Short);
+                md.AppendFormat(" - *Commit: **{0}***", change.Version.Short);
             }
             md.AppendLine("");
             
             if(null != change.Changes)
             {
+                md.AppendLine("");
                 foreach (var stringChange in change.Changes)
                 {
                     if(!string.IsNullOrWhiteSpace(stringChange))
@@ -41,7 +42,6 @@ public static class ChangelogExtensions
                         md.AppendFormat("- {0}{1}", stringChange.Replace("\n","").Replace("\r",""), Environment.NewLine);
                     }
                 }
-                md.AppendLine("");
             }
         }
         
