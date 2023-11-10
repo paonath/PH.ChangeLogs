@@ -3,7 +3,7 @@
 	<Authors>Paolo Innocenti</Authors>
 	<Copyright>Copyright $([System.DateTime]::UtcNow.ToString("yyyy")) (c) Paolo Innocenti - paonath@gmail.com </Copyright>
 	
-    <Version>0.0.1-beta</Version>
+    <Version>0.0.1</Version>
   </PropertyGroup>
 </Project>
 
