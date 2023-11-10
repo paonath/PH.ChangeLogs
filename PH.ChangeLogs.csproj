@@ -4,6 +4,42 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+
+    <PackageId>PH.ChangeLogs</PackageId>
+
+
+    <Description>
+      c-sharp utility for tracking changes and releases of a project
+    </Description>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+
+
+    <PackageTags>release,changelog</PackageTags>
+
+    <PackageVersion>0.0.1</PackageVersion>
+
+
+    <Authors>Paolo Innocenti</Authors>
+    <Copyright>Copyright PH $([System.DateTime]::UtcNow.ToString("yyyy")) (c) paonath@gmail.com. All rights reserved.</Copyright>
+    <RepositoryUrl>https://github.com/paonath/PH.ChangeLogs</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/paonath/PH.ChangeLogs</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/paonath/Icons/master/nuget_es_img.png</PackageIconUrl>
+
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="nuget_es_img.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PackageIcon>nuget_es_img.png</PackageIcon>
   </PropertyGroup>
 
 </Project>

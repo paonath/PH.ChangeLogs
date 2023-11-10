@@ -4,46 +4,60 @@ namespace PH.ChangeLogs;
 
 public static class ChangelogExtensions
 {
-    public static string ToMarkdown(this Changelog c)
+    public static string BuildSourceRevisionId(this Changelog changelog)
     {
-        if (null == c)
+        var last = changelog.Changes?.LastOrDefault();
+        if (null == last)
         {
-            return String.Empty;
+            throw new ArgumentNullException(nameof(changelog), "Missing last change from changelog!");
         }
 
+        return last.BuildSourceRevisionId();
+    }
+
+    public static string ToMarkdown(this Changelog changelog)
+    {
+
         StringBuilder md = new StringBuilder();
-        md.AppendFormat("# {0}{1}", c.Project.Name, Environment.NewLine);
-        if (!string.IsNullOrWhiteSpace(c.Project.Description))
+        md.AppendFormat("# {0}{1}", changelog.Project.Name, Environment.NewLine);
+        if (!string.IsNullOrWhiteSpace(changelog.Project.Description))
         {
             md.AppendLine("");
-            md.AppendFormat("{0}{1}", c.Project.Description, Environment.NewLine);
+            md.AppendFormat("{0}{1}", changelog.Project.Description, Environment.NewLine);
         }
 
         md.AppendLine("");
 
-        foreach (var change in c.Changes)
+        if (null != changelog.Changes)
         {
-            md.AppendFormat("## {0}{1}", change.Version.VersionNumber, Environment.NewLine);
-            md.AppendLine("");
-            md.AppendFormat("Release: **{0:yyyy-MM-dd}** ", change.Version.ReleaseDate);
-            if(!string.IsNullOrWhiteSpace(change.Version.Commit))
+            foreach (var change in changelog.Changes)
             {
-                md.AppendFormat(" - *Commit: **{0}***", change.Version.Short);
-            }
-            md.AppendLine("");
-            
-            if(null != change.Changes)
-            {
+                
+                md.AppendFormat("## {0}{1}", change.Version.VersionNumber, Environment.NewLine);
                 md.AppendLine("");
-                foreach (var stringChange in change.Changes)
+                md.AppendFormat("Release: **{0:yyyy-MM-dd}** ", change.Version.ReleaseDate);
+                if (!string.IsNullOrWhiteSpace(change.Version.Commit))
                 {
-                    if(!string.IsNullOrWhiteSpace(stringChange))
+                    md.AppendFormat(" - *Commit: **{0}***", change.Version.Short);
+                }
+
+                md.AppendLine("");
+
+                if (null != change.Changes)
+                {
+                    md.AppendLine("");
+                    foreach (var stringChange in change.Changes)
                     {
-                        md.AppendFormat("- {0}{1}", stringChange.Replace("\n","").Replace("\r",""), Environment.NewLine);
+                        if (!string.IsNullOrWhiteSpace(stringChange))
+                        {
+                            md.AppendFormat("- {0}{1}", stringChange.Replace("\n", "").Replace("\r", ""),
+                                            Environment.NewLine);
+                        }
                     }
                 }
             }
         }
+        
         
         return md.ToString();
     }

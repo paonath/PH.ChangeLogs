@@ -2,7 +2,16 @@
 
 public record Change(Version Version, string? TitleOrDescription, string?[]? Changes)
 {
-    
+    internal string BuildSourceRevisionId()
+    {
+        var r = $"{Version.VersionNumber}_{Version.ReleaseDate:yyyy-MM-dd}";
+        if (!string.IsNullOrWhiteSpace(Version.Commit))
+        {
+            r = $"{r}_{Version.Short}";
+        }
+
+        return r;
+    }
 }
 
 public record Version(string VersionNumber, DateOnly ReleaseDate , string? Commit = "", string[]? Tags = null)
