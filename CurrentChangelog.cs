@@ -7,7 +7,7 @@ public static class CurrentChangelog
         => new Changelog(new Project("PH.ChangeLogs","c-sharp utility for tracking changes and releases of a project")
             , new Change[]
             {
-                new Change(new Version("0.0.1-alpha", new DateOnly(2023,11,10),"b8b9e9714d8d7fb1be68226210de76b08f9f59c5")
+                new Change(new Version("0.0.1-alpha", new DateOnly(2023,11,10),"85b313f75c5c8a9bbcc70d87a1c888c19c36da41")
                     , "First draft"
                     , new []
                     {
