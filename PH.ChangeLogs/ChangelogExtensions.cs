@@ -42,6 +42,15 @@ public static class ChangelogExtensions
                 if (!string.IsNullOrWhiteSpace(change.Version.Commit))
                 {
                     md.AppendFormat(" - *Commit: **{0}***", change.Version.Short);
+
+                    if (change.Version.Tags != null && change.Version.Tags.Any())
+                    {
+                        md.AppendLine("");
+                        md.Append("Tags: ");
+
+                        var tggs = string.Join(" | ", change.Version.Tags.Select(x => $"***{x}***").ToArray());
+                        md.AppendFormat("{0}{1}", tggs, Environment.NewLine);
+                    }
                 }
 
                 md.AppendLine("");
@@ -80,12 +89,6 @@ public static class ChangelogExtensions
             md.AppendLine("");
         }
 
-        
-        /*
-         This document was automatically generated on 11/12/2019 using PH.ChangeLogs (www.google.com).
-           
-           The SourceRevisionId of the current assembly may differ from the version written by the authors in the changelog.
-         */
         md.AppendLine("#### Disclaimer");
         md.AppendLine();
         md.AppendFormat("> This document was automatically generated on `{0:u}` using PH.ChangeLogs [https://github.com/paonath/PH.ChangeLogs](https://github.com/paonath/PH.ChangeLogs){1}"
@@ -136,7 +139,7 @@ public static class ChangelogExtensions
         }
 
         md.AppendFormat("| {0} | {1} |{2}"
-                        , nameof(System.Environment.Version), Environment.Version, Environment.NewLine);
+                        , "Environment Version", Environment.Version, Environment.NewLine);
 
         bool debug = false;
         #if DEBUG
@@ -144,7 +147,7 @@ public static class ChangelogExtensions
         #endif
 
         md.AppendFormat("| {0} | {1} |{2}"
-                        , "DEBUG", debug, Environment.NewLine);
+                        , "Debug", debug, Environment.NewLine);
 
 
 
