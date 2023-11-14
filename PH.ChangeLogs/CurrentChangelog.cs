@@ -15,7 +15,7 @@ namespace PH.ChangeLogs
                    , new Change[]
                    {
                        new(new Version(SemVersion.Parse("0.0.2", SemVersionStyles.Any),
-                                       new DateOnly(2023, 11, 14) , "" , new []{ "v.0.0.2" }) 
+                                       new DateOnly(2023, 11, 14) , "d3fdee189bbdc696ee6ecc9f26ded03d83101b7e" , new []{ "v.0.0.2" }) 
                            , "Add Assembly Info", new[]
                            {
                                "some info on generating changelog.md"
