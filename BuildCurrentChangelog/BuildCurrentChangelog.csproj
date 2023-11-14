@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PH.ChangeLogs\PH.ChangeLogs.csproj" />
-  </ItemGroup>
-
 </Project>

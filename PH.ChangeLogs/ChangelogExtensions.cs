@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 
 namespace PH.ChangeLogs;
@@ -91,8 +92,62 @@ public static class ChangelogExtensions
                         , DateTime.UtcNow, Environment.NewLine);
         md.AppendLine("> ");
         md.AppendLine("> The SourceRevisionId of the current assembly may differ from the version written by the authors in the changelog.");
+
+        
+
         md.AppendLine();
 
         return md.ToString().TrimEnd();
+    }
+
+    public static string ToMarkdownWithAssemblyInfo(this Changelog changelog, Assembly assembly) =>
+        ToMarkdownWithAssemblyInfoPrivate(changelog, assembly);
+
+    public static string ToMarkdownWithAssemblyInfo(this Assembly assembly, Changelog changelogForAssembly) =>
+        ToMarkdownWithAssemblyInfoPrivate(changelogForAssembly, assembly);
+
+
+
+    internal static string ToMarkdownWithAssemblyInfoPrivate(Changelog changelog, Assembly assembly)
+    {
+        var           md0 = changelog.ToMarkdown();
+        StringBuilder md = new StringBuilder();
+        md.AppendLine(md0);
+        
+        md.AppendLine("");
+        md.AppendLine("# Assembly Info");
+        md.AppendLine("");
+        md.AppendLine("| Property | Value |");
+        md.AppendLine("| ---- | ---- |");
+
+        md.AppendFormat("| {0} | {1} |{2}"
+                        , nameof(assembly.FullName), assembly.FullName, Environment.NewLine);
+
+        md.AppendFormat("| {0} | {1} |{2}"
+                        , "Assembly Name Version", assembly.GetName().Version, Environment.NewLine);
+
+        var informationalVersion = assembly
+           .GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+        if (informationalVersion != null)
+        {
+            md.AppendFormat("| {0} | {1} |{2}"
+                            , nameof(AssemblyInformationalVersionAttribute.InformationalVersion),
+                            informationalVersion.InformationalVersion, Environment.NewLine);
+        }
+
+        md.AppendFormat("| {0} | {1} |{2}"
+                        , nameof(System.Environment.Version), Environment.Version, Environment.NewLine);
+
+        bool debug = false;
+        #if DEBUG
+        debug = true;
+        #endif
+
+        md.AppendFormat("| {0} | {1} |{2}"
+                        , "DEBUG", debug, Environment.NewLine);
+
+
+
+        return md.ToString();
     }
 }
