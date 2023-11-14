@@ -15,7 +15,7 @@ namespace PH.ChangeLogs
                    , new Change[]
                    {
                        new(new Version(SemVersion.Parse("0.0.2-alpha2", SemVersionStyles.Strict),
-                                       new DateOnly(2023, 11, 14), "618c9a099997b5c7e4c278c6e75b9fd7f5d13fe2", new[] { "v.0.0.2-alpha2" })
+                                       new DateOnly(2023, 11, 14), "c39c3a03baf950eda9ad692deff9dea9fe6348bb", new[] { "v.0.0.2-alpha2" })
                            , "Introduced SemVer", new[]
                            {
                                "added Author array to Changelog",
