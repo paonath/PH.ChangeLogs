@@ -8,19 +8,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 
-    <PackageId>PH.ChangeLogs</PackageId>
-
-
-    <Description>
-      c-sharp utility for tracking changes and releases of a project
-    </Description>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-
-
-    <PackageTags>release,changelog</PackageTags>
-
-    <PackageVersion>0.0.1</PackageVersion>
+   
 
 
     <Authors>Paolo Innocenti</Authors>
@@ -42,10 +30,11 @@
     <None Include="nuget_es_img.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="[1.1.1,)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Semver" Version="2.3.0" />
   </ItemGroup>
   <ItemGroup>
     

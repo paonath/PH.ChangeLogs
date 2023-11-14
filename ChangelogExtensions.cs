@@ -6,7 +6,8 @@ public static class ChangelogExtensions
 {
     public static string BuildSourceRevisionId(this Changelog changelog)
     {
-        var last = changelog.Changes?.LastOrDefault();
+        var last = changelog.Changes?.OrderByDescending(x => x.Version.ReleaseDate)
+                            .ThenByDescending(c => c.Version.SemanticVersion).FirstOrDefault();
         if (null == last)
         {
             throw new ArgumentNullException(nameof(changelog), "Missing last change from changelog!");
@@ -19,6 +20,7 @@ public static class ChangelogExtensions
     {
 
         StringBuilder md = new StringBuilder();
+
         md.AppendFormat("# {0}{1}", changelog.Project.Name, Environment.NewLine);
         if (!string.IsNullOrWhiteSpace(changelog.Project.Description))
         {
@@ -26,14 +28,14 @@ public static class ChangelogExtensions
             md.AppendFormat("{0}{1}", changelog.Project.Description, Environment.NewLine);
         }
 
-        md.AppendLine("");
+       
 
         if (null != changelog.Changes)
         {
             foreach (var change in changelog.Changes)
             {
-                
-                md.AppendFormat("## {0}{1}", change.Version.VersionNumber, Environment.NewLine);
+                md.AppendLine("");
+                md.AppendFormat("## {0}{1}", change.Version.SemanticVersion, Environment.NewLine);
                 md.AppendLine("");
                 md.AppendFormat("Release: **{0:yyyy-MM-dd}** ", change.Version.ReleaseDate);
                 if (!string.IsNullOrWhiteSpace(change.Version.Commit))

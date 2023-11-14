@@ -1,10 +1,12 @@
-﻿namespace PH.ChangeLogs;
+﻿using Semver;
+
+namespace PH.ChangeLogs;
 
 public record Change(Version Version, string? TitleOrDescription, string?[]? Changes)
 {
     internal string BuildSourceRevisionId()
     {
-        var r = $"{Version.VersionNumber}_{Version.ReleaseDate:yyyy-MM-dd}";
+        var r = $"{Version.SemanticVersion}_{Version.ReleaseDate:yyyy-MM-dd}";
         if (!string.IsNullOrWhiteSpace(Version.Commit))
         {
             r = $"{r}_{Version.Short}";
@@ -14,7 +16,7 @@ public record Change(Version Version, string? TitleOrDescription, string?[]? Cha
     }
 }
 
-public record Version(string VersionNumber, DateOnly ReleaseDate , string? Commit = "", string[]? Tags = null)
+public record Version(SemVersion SemanticVersion, DateOnly ReleaseDate , string? Commit = "", string[]? Tags = null)
 {
     private string? GetShort()
     {

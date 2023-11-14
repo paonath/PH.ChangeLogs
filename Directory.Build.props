@@ -2,8 +2,23 @@
   <PropertyGroup>
 	<Authors>Paolo Innocenti</Authors>
 	<Copyright>Copyright $([System.DateTime]::UtcNow.ToString("yyyy")) (c) Paolo Innocenti - paonath@gmail.com </Copyright>
-	
-    <Version>0.0.1</Version>
+    
+    <PackageId>PH.ChangeLogs</PackageId>
+
+
+    <Description>
+      c-sharp utility for tracking changes and releases of a project
+    </Description>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+
+
+    <PackageTags>release,changelog</PackageTags>
+
+    <PackageVersion>0.0.2-alpha2</PackageVersion>
+    <Version>0.0.2-alpha2</Version>
+
+    <SourceRevisionId>$(Configuration) $([System.DateTime]::UtcNow.ToString("yyyyMMdd"))</SourceRevisionId>
   </PropertyGroup>
 </Project>
 
