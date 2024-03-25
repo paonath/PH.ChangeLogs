@@ -15,8 +15,7 @@ namespace PH.ChangeLogs
                    , new Change[]
                    {
                        new(new Version(SemVersion.Parse("0.0.4", SemVersionStyles.Any),
-                                       new DateOnly(2024, 3, 25), "",
-                                       new[] { "v.0.0.4" })
+                                       new DateOnly(2024, 3, 25), "14ca69d1d434f9814549784285bedff9969c8b6e", new[] { "v.0.0.4" })
                            , "Fix Format changes on md", new[]
                            {
                                "tags should be not empty string",
