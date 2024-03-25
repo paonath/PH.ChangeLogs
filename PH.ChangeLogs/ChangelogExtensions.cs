@@ -43,12 +43,12 @@ public static class ChangelogExtensions
                 {
                     md.AppendFormat(" - *Commit: **{0}***", change.Version.Short);
 
-                    if (change.Version.Tags != null && change.Version.Tags.Any())
+                    if (change.Version.Tags != null && change.Version.Tags.Any(t => !string.IsNullOrWhiteSpace(t)))
                     {
                         md.AppendLine("");
                         md.Append("Tags: ");
 
-                        var tggs = string.Join(" | ", change.Version.Tags.Select(x => $"***{x}***").ToArray());
+                        var tggs = string.Join(" | ", change.Version.Tags.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => $"***{x}***").ToArray());
                         md.AppendFormat("{0}{1}", tggs, Environment.NewLine);
                     }
                 }
@@ -62,8 +62,36 @@ public static class ChangelogExtensions
                     {
                         if (!string.IsNullOrWhiteSpace(stringChange))
                         {
-                            md.AppendFormat("- {0}{1}", stringChange.Replace("\n", "").Replace("\r", ""),
-                                            Environment.NewLine);
+                            var  lines = stringChange.Replace("\n\r", "\n").Split("\n");
+                            bool first = true;
+                            bool endWithNewLine = false;
+                            foreach (var line in lines)
+                            {
+                                if (first)
+                                {
+                                    md.AppendFormat("- {0}", line);
+                                    first = false;
+                                }
+                                else
+                                {
+                                    md.AppendFormat("  {0}", line);        
+                                }
+
+                                if (line.EndsWith('\n'))
+                                {
+                                    endWithNewLine = true;
+                                }
+                            }
+
+                            if (!endWithNewLine)
+                            {
+                                md.Append(Environment.NewLine);    
+                            }
+                            
+                            md.AppendLine("");
+
+
+
                         }
                     }
                 }

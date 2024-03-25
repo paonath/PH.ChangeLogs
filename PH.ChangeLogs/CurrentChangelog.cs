@@ -14,6 +14,21 @@ namespace PH.ChangeLogs
                                "c-sharp utility for tracking changes and releases of a project. Useful for generate changelogs on markdown")
                    , new Change[]
                    {
+                       new(new Version(SemVersion.Parse("0.0.4", SemVersionStyles.Any),
+                                       new DateOnly(2024, 3, 25), "14ca69d1d434f9814549784285bedff9969c8b6e", new[] { "v.0.0.4" })
+                           , "Fix Format changes on md", new[]
+                           {
+                               "tags should be not empty string",
+                               """
+                               fix newLine problems and indentation:
+                               
+                               ```
+                                  this line should be indented correctly
+                               ```
+                               """
+                               
+                           }),
+                       
                        new(new Version(SemVersion.Parse("0.0.3", SemVersionStyles.Any),
                                        new DateOnly(2023, 11, 14) , "5d7d6c74cb94be3d4f61c0108916b34919f3f791" , new []{ "v.0.0.3" }) 
                            , "Fix Missing Data on Markdown", new[]

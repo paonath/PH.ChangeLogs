@@ -15,10 +15,10 @@
 
     <PackageTags>release,changelog</PackageTags>
 
-    <PackageVersion>0.0.3</PackageVersion>
-    <Version>0.0.3</Version>
+    <PackageVersion>0.0.4</PackageVersion>
+    <Version>0.0.4</Version>
 
-    <SourceRevisionId>$(Configuration) $([System.DateTime]::UtcNow.ToString("yyyyMMdd"))</SourceRevisionId>
+    <SourceRevisionId>$(Configuration) 0.0.4 $([System.DateTime]::UtcNow.ToString("yyyyMMdd"))</SourceRevisionId>
   </PropertyGroup>
 </Project>
 
